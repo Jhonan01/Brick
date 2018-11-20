@@ -1,0 +1,73 @@
+from flask import request, render_template, session
+from bricks.lance import lance_bp
+from bricks.models import Usuario, Itens, Imagens, db, Lances
+
+
+@lance_bp.route("/lances", methods = ['GET', 'POST'])
+
+def lances():
+
+    user = Usuario.get().where(Usuario.usuario_login == session['usuario'])
+    
+    if(request.form.get('id_user_lancador') != '' or request.form.get('id_user_lancador') != NULL):
+        
+        Lances.create(lances_id_user_lancador=request.form.get('id_user_lancador'), lances_id_user_alvo=request.form.get('id_user_alvo'), lances_id_item_lancador=request.form.get('id_item_lancador'), lances_id_item_alvo=request.form.get('id_item_alvo'))
+
+    lances = []
+    meusLances = []
+    lances_recebidos = []
+
+    query_meus_lances =  Lances.select(Lances.lances_id_user_lancador).where(Lances.lances_id_user_lancador == user.id).get()
+    query_lances_recebidos = Lances.select(Lances.lances_id_user_alvo).where(Lances.lances_id_user_alvo == user.id).get()
+    
+	for data query_meus_lances:
+        dados_item = Itens.get().where(Itens.id == data.lances_id_item_lancador)
+        dados_item_images = Imagens.get().where(Imagens.imagens_id_itens_id == dados_item.id)
+	   	images_itens = []
+        for x in dados_item_images:
+            images_itens.append(x.imagens_name_hash)
+
+        a={
+            'lancados':
+                'lances_id_user_lancador': data.lances_id_user_lancador,
+                'lances_user_img_lancador': images_itens,
+                'lance_user_titulo_lancador': dados_item.itens_titulo,
+                'lance_user_desc_lancador':  dados_item.itens_descricao         
+	   	}
+        meusLances.append(a)
+
+    for data in query_lances_recebidos:
+        dados_item = Itens.get().where(Itens.id == data.lances_id_item_alvo)
+        dados_item_images = Imagens.get().where(Imagens.imagens_id_itens_id == dados_item.id)
+        images_itens = []
+        for x in dados_item_images:
+            images_itens.append(x.imagens_name_hash)
+
+        a={
+            'recebidos':
+                'lances_id_user_alvo': data.lances_id_user_alvo,
+                'lances_user_img_alvo': images_itens,
+                'lance_user_titulo_alvo': dados_item.itens_titulo,
+                'lance_user_desc_alvo':  dados_item.itens_descricao         
+        }
+        lances_recebidos.append(a)
+    lances.append(meusLances)
+    lances.append(lances_recebidos)
+    print(lances)
+
+
+
+    return render_template('lance.html', lances = lances)
+
+
+@lance_bp.route("/aceitar/", methods = ['GET', 'POST'])
+
+def aceitar():
+    
+    return request.form.get('aceitar')
+
+@lance_bp.route("/recusar/", methods = ['GET', 'POST'])
+def recusar():
+
+    return request.form.get('recusar')
+

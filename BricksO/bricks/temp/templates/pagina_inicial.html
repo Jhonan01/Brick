@@ -1,0 +1,36 @@
+<html>
+    <head><title>Inicio</title></head>
+        <body>
+	    <div>
+	    <h1>Bricks</h1>
+	    </br></br></br></br></br>
+	    <hr />
+	    <form action='/cadastro_usuario' method='POST'>
+                <button type='submit'>Cadastro</button>
+	    </form>
+	    <form action='/login' method='POST'>
+		<button type'submit'>Login</button>
+	    </form>
+	    <form action='/lances' method='POST'>
+		<button type'submit'>Lances</button>
+	    </form>
+	    <form action='/incluir_item' method='POST'>
+		<button type'submit'>Incluir Item</button>
+	    </form>
+	    <hr />
+	    </div>
+	    <h4>                 Pesquisa:</h4>
+            <div>
+	    <form action="/pesquisa" method="POST">
+	    <select name="pesquisa">
+		    <option value="vazio">Vazio</option>
+		    <option value="eletronicos">Eletrônicos</option>
+		    <option value="eletrodomesticos">Eletrodomèsticos</option>
+		    <option value="moda">Moda</option>
+		    </select>
+		    <button type="submit">Pesquisar</button>
+		    <hr />
+	            </form>
+            </div>
+	</body>
+</html>	

@@ -1,0 +1,49 @@
+<html> <head><title>Incluir Item</title></head>
+    <body>
+        <h1>Bricks</h1>
+        <br/><br/><br/><br/>
+        <a href='/index'><h5>Início</h5></a>
+        <hr/>
+	<h3>Incluir item:</h3>
+	<form action="/enviado" method="POST" enctype="multipart/form-data">
+        <div>
+	<h4>Título:</h4>
+        <label for="name"></label>
+        <input type="text" name="name"/>
+        </div>
+
+        <div>
+	<h4>Descrição:</h4>
+        <label for="descricao"></label>
+        <textarea name="descricao"></textarea>
+        </div>
+        <div>
+        <br/>
+	<br/>
+	<h4>Categorias:</h4>
+	<select name="categoria">
+        <option value="vazio">Vazio</option>
+                    <option value="eletronicos">Eletrônicos</option>
+                    <option value="eletrodomesticos">Eletrodomésticos</option>
+                    <option value="moda">Moda</option>
+                    <option value="animais">Animais</option>
+                    <option value="livros">Livros</option>
+                    <option value="moveis">Móveis</option>
+                    <option value="ferramentas">Ferramentas</option>
+                    <option value="esportes">Esportes</option>
+                    <option value="imoveis">Imóveis</option>
+                    <option value="automoveis">Automóveis</option>
+                    <option value="brinquedos">Brinquedos</option>
+	
+	</select>
+	<br/>
+	<br/>
+	<h4>Carregar imagem:</h4>
+	<input type="file" name="imagem"/>
+        <button type="submit">Enviar</button>
+        </div>
+
+	</form>
+
+    </body>
+</html>

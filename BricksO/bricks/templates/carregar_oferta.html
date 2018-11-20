@@ -1,0 +1,39 @@
+<html>
+    <head><title>Inicio</title></head>
+        <body>
+            <div>
+            <h1>Bricks</h1>
+            </br></br></br></br></br><hr />
+            <a href='/index'><h5>Início</h5></a>
+
+	    <h3>Meus itens:</h3></br>
+                {%for p in si%}
+
+
+	        <h3>Título: {{p.titulo}}</h3>
+                <h3>Descrição: {{p.descricao}}</h3>
+
+
+		{% for img in p.imagens  %}
+             <img src= "{{ url_for('static', filename='img/itens/'+img) }}" height="200" width="200"/>
+
+             {% endfor %}
+
+	     <a href='/lances/?id_user_lancador={{p.id_user_lancador}}&id_item_lancador={{p.id}}&id_user_alvo={{p.id_user_alvo}}&id_item_alvo={{p.id_item_alvo}}'>
+  
+             <button>
+	     
+		     <h5>Dar lance</h5>
+	     
+	           </button>
+
+             </a>
+
+		</br><hr /> 
+
+     
+             
+	    {% endfor %}
+        </body>
+</html>
+

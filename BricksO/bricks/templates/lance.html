@@ -1,0 +1,93 @@
+<html>
+	<head><title>Lances</title></head>
+	<body>
+		<h1>Bricks<h1>
+		<br/><br/><br/><br/>
+                <a href='/index'><h5>Início</h5></a>
+		<hr/>
+		<h3>Meus Lances</h3>                
+
+		<table border='1' style="width:100%">
+		
+		<tr>
+			<th>Minha oferta</th>
+			<th>Item de oferta</th>
+			<th>Opções</th>
+		
+		</tr>
+		{%for lance in lances[0]%}
+		<tr>
+
+			<td>		
+             
+             	<img src= "{{ url_for('static', filename='img/itens/'+lance.lances_user_img_lancador) }}" height="150" width="150" style="display: block;margin: auto;"/>           
+				<strong>titulo:</strong>{{lance.lance_user_titulo_lancador}}
+				<br/><strong>Descrição:</strong>{{lance.lance_user_desc_lancador}} 
+			</td>
+			
+			<td>				
+             
+             	<img src= "{{ url_for('static', filename='img/itens/'+lance.lances_user_img_alvo) }}" height="150" width="150" style="display: block;margin: auto;"/>          
+				<strong>titulo:</strong>{{lance.lance_user_titulo_alvo}}
+				<br/><strong>Descrição:</strong>{{lance.lance_user_desc_alvo}} 
+
+			</td>
+
+			<td>
+                            <button type='submot' name='Cancelar'>Cancelar</button>
+               </td>
+		</tr>
+                
+		{%endfor%}
+		</table>
+
+		<h3>Lances recebidos</h3>
+	
+                
+	<table border='1' style="width:100%">
+		
+		<tr>
+			<th>Minha oferta</th>
+			<th>Iten de oferta</th>
+			<th>Opções</th>
+		
+		</tr>
+		{%for lance in lances[1]%}
+		<tr>
+
+			<td>		
+             
+             	<img src= "{{ url_for('static', filename='img/itens/'+lance.lances_user_img_lancador) }}" height="150" width="150" style="display: block;margin: auto;"/>           
+				<strong>titulo:</strong>{{lance.lance_user_titulo_lancador}}
+				<br/><strong>Descrição:</strong>{{lance.lance_user_desc_lancador}} 
+			</td>
+			
+			<td>				
+             
+             	<img src= "{{ url_for('static', filename='img/itens/'+lance.lances_user_img_alvo) }}" height="150" width="150" style="display: block;margin: auto;"/>          
+				<strong>titulo:</strong>{{lance.lance_user_titulo_alvo}}
+				<br/><strong>Descrição:</strong>{{lance.lance_user_desc_alvo}} 
+
+			</td>
+
+			<td>
+			    <form action='/aceitar' method='POST'>
+                            <button type='submot' name='aceitar'>Aceitar</button>
+                            <p>
+			    <form action='/recusar' method='POST'>
+                            <button type='submot' name='recusar'>Recusar</button>
+               </td>
+		</tr>
+                
+		{%endfor%}
+		</table>
+
+	        
+		</br>
+		<hr />
+		</br>
+                
+
+		<hr/>
+	</body>
+</html>

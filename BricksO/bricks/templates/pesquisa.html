@@ -1,0 +1,39 @@
+<html>
+    <head><title>Inicio</title></head>
+        <body>
+            <div>
+            <h1>Bricks</h1>
+	    </br></br></br></br></br>
+	    <a href='/index'><h5>Início</h5></a>
+
+	    <hr />
+
+	    <h3>Itens</h3>
+	    {% for item in resultadoTitulo  %}
+
+	        <h3>Título:  {{item.titulo }}</h3>
+	        <h3>Descrição:  {{item.descricao }}</h3>
+	
+
+             {% for img in item.imagens  %}   
+             <img src= "{{ url_for('static', filename='img/itens/'+img) }}" height="200" width="200"/>
+             
+	     {% endfor %}
+            
+	     <a href='/carregar_oferta/?id_user_alvo={{item.id_user}}&id_item_alvo={{item.id}}'>
+                     <button>
+                         
+			     <h5>Dar oferta</h5>
+
+	             </button>
+		 </a>
+
+	     <hr /></br>
+        {% endfor %}
+
+            <hr />
+
+           
+
+	</body>
+</html>
