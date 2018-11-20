@@ -11,16 +11,21 @@ def index():
     if request.method == 'POST':
     
         query = Usuario.select(Usuario.usuario_login).where(Usuario.usuario_login == request.form.get('usuario')).get()
-        
-        #queryS = Usuario.select(Usuario.usuario_senha).where(Usuario.usuario_senha == request.form.get('senha')).get()
-
 
 
         if('{0.usuario_login}'.format(query) == request.form.get('usuario')):
 
-            session['usuario'] = request.form.get('usuario')
-            usuario_local = request.form.get('usuario')
-            return render_template('index.html', logado='Você está logado') 
+            queryS = Usuario.select(Usuario.usuario_senha)
+            print(queryS)
+            for aux in queryS:
+                print(aux.usuario_senha)
+                if(check_password_hash (aux.usuario_senha,  request.form.get('senha')) == True):
+
+
+
+                    session['usuario'] = request.form.get('usuario')
+                    usuario_local = request.form.get('usuario')
+                    return render_template('index.html', logado='Você está logado') 
 
     return render_template('index.html', logado='Você não está logado')
 
