@@ -16,6 +16,17 @@ def cadastro_usuario():
 def cadastro_enviado():
 
 
+    verificar = False
+    c = request.form.get('email')
+    for v in range(len(request.form.get('email'))):
+        if(c[v] == '@'):
+            verificar = True
+            break
+
+    if(verificar == False):
+        return render_template('cadastro_usuario.html', error_cadastro = 'Email inválido')
+
+
     Usuario.create(usuario_login=request.form.get('usuario'), usuario_nome=request.form.get('nome'), usuario_senha=generate_password_hash(request.form.get('senha')), usuario_sobrenome=request.form.get('sobrenome'), usuario_email=request.form.get('email'), usuario_cidade=request.form.get('cidade'), usuario_estado=request.form.get('estado'))
 
     return """<html><head><title>Cadastro enviado</title></head>
